@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [testguy, alterTestguy] = useState('fish')
+  const [testguy, alterTestguy] = useState('desktopNow')
 
   function doSomething(e) {
     alterTestguy(e.target.value)
@@ -11,11 +11,11 @@ function App() {
   //<> is a React Fragment that doesn't include extra DOM elements
   return (
     <> 
-      <h1>Shopping List</h1>
+      <h1 class="title-block">Calendar</h1>
       <div>
         <form>
           <p>
-            <input type="text" id="text1" required pattern="\w[0-9a-zA-Z\- ]*"
+            <input type="text" id="text1" required pattern="\w[0-9a-zA-Z\- ]*" class="enter-name" placeholder="Enter reservation name"
               title="Must have at least one non-whitespace character and no special characters."
               onChange={doSomething}></input>
           </p>

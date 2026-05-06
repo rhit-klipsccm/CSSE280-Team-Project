@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import './App.css'
 
 function App() {
-  const [testguy, alterTestguy] = useState('fish')
+  const [testguy, alterTestguy] = useState('desktopnow')
 
   function doSomething(e) {
     alterTestguy(e.target.value)
@@ -17,7 +16,7 @@ function App() {
           <p>
             <input type="text" id="text1" required pattern="\w[0-9a-zA-Z\- ]*"
               title="Must have at least one non-whitespace character and no special characters."
-              onChange={doSomething}></input>
+              onChange={doSomething} value={doSomething}></input>
           </p>
           <p>
             <input id="button1" type="button" value="Add Item To List" 
