@@ -7,7 +7,7 @@ function App() {
   //<> is a React Fragment that doesn't include extra DOM elements
   return (
       <>
-        <iframe src="https://calendar.google.com/calendar/embed?src=357fce2b791dd6d8586930ba805fc98b311249542860748111772fc4bf67f4c8%40group.calendar.google.com&ctz=America%2FIndiana%2FIndianapolis" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://calendar.google.com/calendar/embed?src=357fce2b791dd6d8586930ba805fc98b311249542860748111772fc4bf67f4c8%40group.calendar.google.com&ctz=America%2FIndiana%2FIndianapolis"></iframe>
 
         <form method="POST" action="/requests" enctype="application/x-www-form-urlencoded">
           

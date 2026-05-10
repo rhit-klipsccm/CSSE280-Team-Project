@@ -1,29 +1,9 @@
-body {
-    background-color: lightblue;
-    
-}
-
 h1 {
-    font-size: 5vh;
-}
-li:hover {
-    background-color: darkgrey;
-    color: white;
+    color: red
 }
 
-
-#list2 li {
-    text-decoration: line-through;
+iframe {
+    border: 0;
+    width: 800px;
+    height: 600px;
 }
-
-.list-container {
-    display: flex;
-    flex-direction: row;
-}
-
-.list {
-    width: 25vw;
-}
-
-
-

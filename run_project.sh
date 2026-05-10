@@ -1,4 +1,4 @@
 cd react
 npm run build
 cd ../server
-python httpserver.py
+python3 httpserver.py
