@@ -1,5 +1,6 @@
 import pickledb
 import os
+import uuid
 
 db_path = 'requests.db'
 global_db = None
@@ -17,14 +18,73 @@ def get_db():
         load_db()
     return global_db
 
+def get_request(request_id):
+    db = get_db()
+    return db.get(request_id)
+
+def get_all_requests():
+    db = get_db()
+    requests = []
+    for request_id in db.all():
+        requests.append(get_request(request_id))
+    return requests
+
+def verify_entry_exists(request_id):
+    if get_request(request_id) is not None:
+        return True
+    else:
+        return False
+
+def delete_request(request_id):
+    db = get_db()
+    db.remove(request_id)
+    db.save()
+
+## here, i'm aiming to allow the user to form a request_entry with the following parameters 
+#  ***which must be specified***:
+def form_request_entry(**fields):
+    return {
+        "name": fields["name"],
+        "date": fields["date"],
+        "start-time": fields["start_time"],
+        "end-time": fields["end_time"],
+        "approval": fields["approval"],
+        "reason": fields["reason"]
+    }
+
+
+
 def add_request(request):
     db = get_db()
     db.set(
-        request["name"], {
-            "date": request["date"],
-            "start-time": request["start-time"],
-            "end-time": request["end-time"],
-            "approval": "Pending"
-        }
+        uuid.uuid4(), 
+        form_request_entry(
+            name=request["name"],
+            date=request["date"],
+            ## note from connor:
+            #  i don't think **kwargs supports this case: "start-time" / "end-time" / etc.
+            #  current solution is to call the parameters "start_time" and "end_time", but 
+            #  the fields from request object/dict. are still in their original case:
+            start_time=request["start-time"],
+            end_time=request["end-time"],
+            ## not magical strings! requests are pending without reason by default.
+            approval="Pending",
+            reason=""
+        )
     )
     db.save()
+
+def patch_request(request_id, action, reason=""):
+    db = get_db()
+    request = get_request(request_id)
+    db.set(
+        request_id, 
+        form_request_entry(
+            approval=action,
+            reason=reason
+        )
+    )
+    db.save()
+
+
+
