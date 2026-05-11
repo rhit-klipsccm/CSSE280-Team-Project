@@ -92,6 +92,10 @@ def patch_request(request_id, action, reason=""):
     db.set(
         request_id, 
         form_request_entry(
+            name=request["name"],
+            date=request["date"],
+            start_time=request["start_time"],
+            end_time=request["end_time"],
             approval=action,
             reason=reason
         )
