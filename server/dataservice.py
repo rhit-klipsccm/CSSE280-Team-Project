@@ -25,8 +25,20 @@ def get_request(request_id):
 def get_all_requests():
     db = get_db()
     requests = []
+    request = {}
     for request_id in db.all():
-        requests.append(get_request(request_id))
+        request_data = get_request(request_id)
+        request = {
+            ## different format alert! including id as a field here as the server needs it
+            "id": request_id,
+            "name": fields["name"],
+            "date": fields["date"],
+            "start-time": fields["start_time"],
+            "end-time": fields["end_time"],
+            "approval": fields["approval"],
+            "reason": fields["reason"]
+        }
+        requests.append(request)
     return requests
 
 def verify_entry_exists(request_id):
