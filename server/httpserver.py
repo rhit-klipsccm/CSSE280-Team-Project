@@ -21,7 +21,7 @@ def get_requests():
     return flask.Response(
         status="200 OK",
         headers={"Content-Type": "application/json"},
-        response=josn.dumps(requests)
+        response=json.dumps(requests)
     )
 
 @app.post("/requests")
