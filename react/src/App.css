@@ -1,9 +1,59 @@
-h1 {
-    color: red
+h1.header {
+    color: white;
+    background-color: darkred;
+    width: auto;
+    margin: 0px;
+    text-align: center;
 }
 
 iframe {
     border: 0;
     width: 800px;
     height: 600px;
+}
+
+body {
+    margin: 0px;
+    background-color: #AAAAAA;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-right: 15vw;
+    justify-content: center;
+    text-align: center;
+}
+
+.calendar {
+    display: block;
+    width: 50vw;
+    height: 80vh;
+}
+
+input#name {
+    border: 1px solid #232323;
+    border-radius: 3px;
+    margin-bottom: 5vh;
+    font-size: 18px;
+}
+
+.time-container {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5vh;
+}
+
+.labelgroup-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1vw;
 }
