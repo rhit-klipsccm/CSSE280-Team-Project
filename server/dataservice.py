@@ -1,8 +1,9 @@
 import pickledb
 import os
 import uuid
+import json
 
-db_path = 'requests.db'
+db_path = './requests.db'
 global_db = None
 
 def load_db():
