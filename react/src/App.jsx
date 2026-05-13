@@ -14,12 +14,20 @@ function App() {
     changeLastTime(e.target.value);
   }
 
+  const [day, changeDay] = useState('');
+
+  function adjustDay(e) {
+    changeDay(e.target.value);
+  }
+
   function parseTime(time) {
     let timeString = time.split(":");
     let hours = parseFloat(timeString[0]);
     let minutes = parseFloat(timeString[1])/60;
     return hours + minutes;
   }
+
+  const date = new Date();
 
   //<> is a React Fragment that doesn't include extra DOM elements
   return (
@@ -35,7 +43,7 @@ function App() {
             <div class="time-container">
               <div class="labelgroup-container">
                 <label for="date">Date:</label>
-                <p><input type="date" name="date" id="date" required/></p>
+                <p><input type="date" name="date" id="date" value={day} onChange={adjustDay} required/></p>
               </div>
 
               <div class="labelgroup-container">
@@ -51,14 +59,32 @@ function App() {
 
             <p><input type="submit" name="submit-request" id="submit-request" value="Submit Reservation Request"
               onClick={async (e) => {
-                let testFirstTime = parseTime(firstTime)
-                let testLastTime = parseTime(lastTime)
+                let testFirstTime = parseTime(firstTime);
+                let testLastTime = parseTime(lastTime);
                 if (testLastTime <= testFirstTime)
                   testLastTime = testLastTime + 24;
 
                 if (testLastTime - testFirstTime > 2) {
-                  e.preventDefault()
-                  alert("Message officer for times greater than 2 hours")
+                  e.preventDefault();
+                  alert("Message officer for times greater than 2 hours");
+                  return false;
+                }
+
+                let mm = date.getMonth();
+                mm = parseInt(mm) + 1;
+                mm = "" + mm;
+                if (mm.length == 1)
+                  mm = "0" + mm;
+
+                let dd = date.getDate();
+                if (dd.length == 1)
+                  dd = "0" + dd;
+
+                let yyyymmdd = date.getFullYear() + "-" + mm + "-" + dd;
+
+                if (day < yyyymmdd) {
+                  e.preventDefault();
+                  alert("You can't schedule for a day in the past!");
                   return false;
                 }
                 
