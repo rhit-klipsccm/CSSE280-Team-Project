@@ -10,7 +10,7 @@ function App() {
         <h1 class="header">Calendar</h1>
 
         <div class = "register-form">
-          <form method="POST" action="/requests" enctype="application/x-www-form-urlencoded" class="form">
+          <form method="POST" action="/requests" enctype="multipart/form-data" class="form">
           
             <p><input type="text" name="name" id="name" placeholder="Enter Reservation Name"/></p>
 
@@ -31,7 +31,28 @@ function App() {
               </div>
             </div>
 
-            <p><input type="submit" name="submit-request" id="submit-request" value="Submit Reservation Request"/></p>
+            <p><input type="submit" name="submit-request" id="submit-request" value="Submit Reservation Request"
+              onClick={async () => {
+                let options = {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                }
+
+                try {
+                    let response = await fetch("requests", options)
+                    if (!response.ok) {
+                        throw new Error(`Response status: ${response.status}`);
+                    }
+                }
+                catch (ex) {
+                    console.error(ex);
+                }
+                //Prevent page reload
+                return false;
+              }}/>
+            </p>
           </form>
 
           <iframe src="https://calendar.google.com/calendar/embed?src=357fce2b791dd6d8586930ba805fc98b311249542860748111772fc4bf67f4c8%40group.calendar.google.com&ctz=America%2FIndiana%2FIndianapolis" class="calendar"></iframe>

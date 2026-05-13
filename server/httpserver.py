@@ -26,7 +26,7 @@ def get_requests():
 
 @app.post("/requests")
 def submit_request():
-    data = request.get_json()
+    data = flask.request.form
     dataservice.add_request(data)
     return flask.redirect("/index.html")
 
