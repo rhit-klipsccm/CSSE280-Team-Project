@@ -1,8 +1,10 @@
 import flask
 import json
-import dataservice
+import requestservice
+import calendarservice
 import os
 from flask import request
+from datetime import datetime
 
 from werkzeug.utils import secure_filename
 
@@ -17,7 +19,7 @@ def shutdown():
 
 @app.get("/requests")
 def get_requests():
-    requests = dataservice.get_all_requests()
+    requests = requestservice.get_all_requests()
     return flask.Response(
         status="200 OK",
         headers={"Content-Type": "application/json"},
@@ -27,7 +29,7 @@ def get_requests():
 @app.post("/requests")
 def submit_request():
     data = flask.request.form
-    dataservice.add_request(data)
+    requestservice.add_request(data)
     return flask.redirect("/index.html")
 
 @app.patch("/requests/<request_id>")
@@ -38,14 +40,45 @@ def update_request(request_id):
     approval_action = data.get("action")
     reason = data.get("reason")
 
-    dataservice.patch_request(request_id, approval_action, reason)
+    requestservice.patch_request(request_id, approval_action, reason)
     return flask.redirect("/admin.html")
 
 @app.delete("/requests/<request_id>")
 def delete_request(request_id):
-    if dataservice.verify_entry_exists(request_id):
-        dataservice.delete_request(request_id)
+    if requestservice.verify_entry_exists(request_id):
+        requestservice.delete_request(request_id)
     return flask.redirect("/admin.html")
+
+
+## /events endpoints now:
+@app.delete("/events/<event_id>")
+def delete_event(event_id):
+    calendarservice.delete_event(event_id)
+    return flask.Response(
+        status="200 OK",
+        response="Deleted!"
+    )
+
+@app.post("/events")
+def create_event():
+    data = request.get_json()
+    created_event = calendarservice.create_event(
+        title=data["title"],
+        start_time=datetime.strptime(data["start_time"], "%Y-%m-%d %H:%M:%S"),
+        end_time=datetime.strptime(data["end_time"], "%Y-%m-%d %H:%M:%S"),
+        description=data.get("description", "")
+    )
+    return flask.Response(
+        status="201",
+        headers={"Content-Type": "application/json"},
+        response=json.dumps(created_event)
+    )
+
+
+
+@app.patch("/events/<event_id>")
+def update_event(event_id):
+    pass
 
 
 

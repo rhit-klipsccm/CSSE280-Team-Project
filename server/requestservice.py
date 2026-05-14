@@ -49,6 +49,7 @@ def delete_request(request_id):
     db = get_db()
     db.remove(request_id)
     db.save()
+    return
 
 ## here, i'm aiming to allow the user to form a request_entry with the following parameters 
 #  ***which must be specified***:
@@ -82,6 +83,7 @@ def add_request(request):
         )
     )
     db.save()
+    return
 
 def patch_request(request_id, action, reason=""):
     db = get_db()
@@ -98,6 +100,6 @@ def patch_request(request_id, action, reason=""):
         )
     )
     db.save()
-
+    return
 
 

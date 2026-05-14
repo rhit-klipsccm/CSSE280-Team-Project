@@ -11,8 +11,8 @@ def get_credentials():
 
     creds = None
 
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
+    if os.path.exists('./token.pickle'):
+        with open('./token.pickle', 'rb') as token:
             creds = pickle.load(token)
 
     if creds and creds.expired and creds.refresh_token:
