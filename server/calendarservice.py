@@ -15,10 +15,11 @@ def get_all_events():
     ).execute()
     return events.get("items", [])
 
-def create_event(title, start_time, end_time, description=""):
+def create_event(title, start_time, end_time, description="", color_id="5"):
     event = {
         'summary': title,
         'description': description,
+        'colorId': color_id,
         'start': {
             'dateTime': start_time.isoformat(),
             'timeZone': 'America/Indiana/Indianapolis',

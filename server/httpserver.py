@@ -30,6 +30,12 @@ def get_requests():
 def submit_request():
     data = flask.request.form
     requestservice.add_request(data)
+    calendarservice.create_event(
+        data["name"],
+        start_time=datetime.strptime(" ".join([data["date"], data["start-time"]]), "%Y-%m-%d %H:%M"),
+        end_time=datetime.strptime(" ".join([data["date"], data["end-time"]]), "%Y-%m-%d %H:%M"),
+        description="¡PENDING!"
+    )
     return flask.redirect("/index.html")
 
 @app.patch("/requests/<request_id>")
@@ -64,8 +70,8 @@ def create_event():
     data = request.get_json()
     created_event = calendarservice.create_event(
         title=data["title"],
-        start_time=datetime.strptime(data["start_time"], "%Y-%m-%d %H:%M:%S"),
-        end_time=datetime.strptime(data["end_time"], "%Y-%m-%d %H:%M:%S"),
+        start_time=datetime.strptime(" ".join([data["date"], data["start-time"]]), "%Y-%m-%d %H:%M"),
+        end_time=datetime.strptime(" ".join([data["date"], data["start-time"]]), "%Y-%m-%d %H:%M"),
         description=data.get("description", "")
     )
     return flask.Response(
