@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './App.css'
+/*import './Admin.css'*/
 
-function App() {
+function Admin() {
   const [firstTime, changeFirstTime] = useState('');
 
   function adjustFirstTime(e) {
@@ -116,4 +116,4 @@ function App() {
   )
 }
 
-export default App
+export default Admin

@@ -49,7 +49,7 @@ def add_event(event_id, google_event):
         "status": google_event.get("status"),
         "html_link": google_event.get("htmlLink"),
     }
-    db.set(event_id, structured_event)
+    db.set(event_id, event)
     db.save()
 
 def patch_event(event_id, updated_details):

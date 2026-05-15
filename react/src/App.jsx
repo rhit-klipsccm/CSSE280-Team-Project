@@ -61,11 +61,12 @@ function App() {
               onClick={async (e) => {
                 let testFirstTime = parseTime(firstTime);
                 let testLastTime = parseTime(lastTime);
+                e.preventDefault();
                 if (testLastTime <= testFirstTime)
                   testLastTime = testLastTime + 24;
 
                 if (testLastTime - testFirstTime > 2) {
-                  e.preventDefault();
+                  //e.preventDefault();
                   alert("Message officer for times greater than 2 hours");
                   return false;
                 }
@@ -83,7 +84,7 @@ function App() {
                 let yyyymmdd = date.getFullYear() + "-" + mm + "-" + dd;
 
                 if (day < yyyymmdd) {
-                  e.preventDefault();
+                  //e.preventDefault();
                   alert("You can't schedule for a day in the past!");
                   return false;
                 }
@@ -105,6 +106,9 @@ function App() {
                     console.error(ex);
                 }
                 //Prevent page reload
+                changeDay("");
+                changeFirstTime("");
+                changeLastTime("");
                 return false;
               }}/>
             </p>
