@@ -29,13 +29,13 @@ def get_requests():
 @app.post("/requests")
 def submit_request():
     data = flask.request.form
-    requestservice.add_request(data)
-    calendarservice.create_event(
+    event_id = calendarservice.create_event(
         data["name"],
         start_time=datetime.strptime(" ".join([data["date"], data["start-time"]]), "%Y-%m-%d %H:%M"),
         end_time=datetime.strptime(" ".join([data["date"], data["end-time"]]), "%Y-%m-%d %H:%M"),
         description="¡PENDING!"
     )
+    requestservice.add_request(data, event_id)
     return flask.redirect("/index.html")
 
 @app.patch("/requests/<request_id>")

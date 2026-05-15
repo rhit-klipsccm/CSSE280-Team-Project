@@ -35,7 +35,7 @@ def create_event(title, start_time, end_time, description="", color_id="5"):
     ).execute()
     event_id = created_event['id']
     eventservice.add_event(event_id, created_event)
-    return created_event
+    return event_id
 
 def patch_event(event_id, **fields):
     ## kinda stole this pattern from the first code example here: https://oneuptime.com/blog/post/2026-01-24-feature-toggles-python/view

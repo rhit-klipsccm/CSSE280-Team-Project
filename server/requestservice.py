@@ -60,11 +60,12 @@ def form_request_entry(**fields):
         "start-time": fields["start_time"],
         "end-time": fields["end_time"],
         "approval": fields["approval"],
-        "reason": fields["reason"]
+        "reason": fields["reason"],
+        "event_id": fields["event_id"]
     }
 
 
-def add_request(request):
+def add_request(request, event_id):
     db = get_db()
     db.set(
         uuid.uuid4(), 
@@ -79,7 +80,8 @@ def add_request(request):
             end_time=request["end-time"],
             ## not magical strings! requests are pending without reason by default.
             approval="Pending",
-            reason=""
+            reason="",
+            event_id=event_id
         )
     )
     db.save()
