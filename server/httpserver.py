@@ -13,11 +13,26 @@ app = flask.Flask(__name__,
             static_folder='dist')
 
 
+import functools
+def require_basic_auth(f):
+    @functools.wraps(f)
+    def wrap(**kwargs):
+        auth = flask.request.authorization
+
+        if auth is not None and auth.get("password") == "Admin Key":
+            return f(**kwargs)
+
+        return flask.Response(status="401 Unauthorized",
+            headers={"WWW-Authenticate": "Basic realm='Admin Page'"})
+    return wrap
+
+
 @app.get("/shutdown")
 def shutdown():
     os._exit(0)
 
 @app.get("/requests")
+@require_basic_auth
 def get_requests():
     requests = requestservice.get_all_requests()
     return flask.Response(
