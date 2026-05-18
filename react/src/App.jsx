@@ -15,8 +15,17 @@ function Page(props) {
 }
 
 function App() {
+    const [pageType, changePageType] = useState(false);
+
+    function swapPageType() {
+        changePageType(!pageType);
+    }
+
     return (
-        <Page admin={false} />
+        <>
+            <Page admin={pageType} />
+            <button onClick={swapPageType}>Swap</button>
+        </>
     );
 }
 
