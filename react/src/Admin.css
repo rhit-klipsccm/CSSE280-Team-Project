@@ -1,0 +1,12 @@
+.request-table {
+    width: 100vw;
+    border: 2px solid black;
+}
+
+.request-table * {
+    border: 2px solid white;
+}
+
+th {
+    background-color: grey;
+}
