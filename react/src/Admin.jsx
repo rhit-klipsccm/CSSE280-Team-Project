@@ -9,9 +9,6 @@ function Admin() {
 
   useEffect(() => {
     fetch("/requests", {
-      headers: {
-        Authorization: "Basic " + btoa("admin:Admin Key")
-      }
     })
       .then((response) => response.json())
       .then((data) => {
