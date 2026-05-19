@@ -47,13 +47,13 @@ function Requests() {
               </div>
 
               <div class="labelgroup-container">
-                <label for="start-time">Start Time:</label>
-                <p><input type="time" name="start-time" id="start-time" value={firstTime} onChange={adjustFirstTime} required/></p>
+                <label for="start_time">Start Time:</label>
+                <p><input type="time" name="start_time" id="start_time" value={firstTime} onChange={adjustFirstTime} required/></p>
               </div>
                 
               <div class="labelgroup-container">
-                <label for="end-time">End Time:</label>
-                <p><input type="time" name="end-time" id="end-time" value={lastTime} onChange={adjustLastTime} required/></p>
+                <label for="end_time">End Time:</label>
+                <p><input type="time" name="end_time" id="end_time" value={lastTime} onChange={adjustLastTime} required/></p>
               </div>
             </div>
 

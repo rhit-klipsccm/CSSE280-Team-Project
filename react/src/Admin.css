@@ -10,3 +10,7 @@
 th {
     background-color: grey;
 }
+
+.selected-row {
+  background-color: lightblue;
+}
