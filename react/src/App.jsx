@@ -18,13 +18,18 @@ function App() {
     const [pageType, changePageType] = useState(false);
 
     function swapPageType() {
-        changePageType(!pageType);
+        let password = "";
+        if (!pageType)
+            password = prompt("Input Admin Password");
+
+        if (password === "Admin Key" || pageType)
+            changePageType(!pageType);
     }
 
     return (
         <>
             <Page admin={pageType} />
-            <button onClick={swapPageType}>Swap</button>
+            <p><button onClick={swapPageType}>Swap</button></p>
         </>
     );
 }
