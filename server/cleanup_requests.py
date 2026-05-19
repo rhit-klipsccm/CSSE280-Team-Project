@@ -44,7 +44,7 @@ def cleanup_requests():
             except Exception as e:
                 print(f"Failed to delete request {request_id}: {e}")
 
-    print(f"Cleanup complete! Deleted {deleted_count} requests!")
+    print(f"Cleanup complete! Deleted {deleted_count} request(s)!")
 
 if __name__ == "__main__":
     cleanup_requests()
