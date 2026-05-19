@@ -8,15 +8,13 @@ global_db = None
 
 def load_db():
     global global_db
-    db_file_already_exists = os.path.exists(db_path)
     global_db = pickledb.PickleDB(db_path)
-    if not db_file_already_exists:
+    if os.path.exists(db_path):
+        global_db.load()
+    else:
         global_db.save()
 
 def get_db():
-    global global_db
-    if global_db is None:
-        load_db()
     return global_db
 
 def get_request(request_id):
@@ -57,8 +55,8 @@ def form_request_entry(**fields):
     return {
         "name": fields["name"],
         "date": fields["date"],
-        "start-time": fields["start_time"],
-        "end-time": fields["end_time"],
+        "start_time": fields["start_time"],
+        "end_time": fields["end_time"],
         "approval": fields["approval"],
         "reason": fields["reason"],
         "event_id": fields["event_id"]
@@ -68,7 +66,7 @@ def form_request_entry(**fields):
 def add_request(request, event_id):
     db = get_db()
     db.set(
-        uuid.uuid4(), 
+        str(uuid.uuid4()), 
         form_request_entry(
             name=request["name"],
             date=request["date"],
@@ -90,18 +88,21 @@ def add_request(request, event_id):
 def patch_request(request_id, action, reason=""):
     db = get_db()
     request = get_request(request_id)
+
     db.set(
-        request_id, 
+        request_id,
         form_request_entry(
             name=request["name"],
             date=request["date"],
-            start_time=request["start_time"],
-            end_time=request["end_time"],
+            start_time=request["start-time"],
+            end_time=request["end-time"],
             approval=action,
-            reason=reason
+            reason=reason,
+            event_id=request["event_id"]
         )
     )
+
     db.save()
     return
 
-
+load_db()
