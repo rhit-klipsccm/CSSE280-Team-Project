@@ -8,10 +8,7 @@ function Admin() {
   const [reason, setReason] = useState("")
 
   useEffect(() => {
-    fetch("/requests", {
-    })
-      .then((response) => response.json())
-      .then((data) => {
+    fetch("/requests").then((response) => response.json()).then((data) => {
         // need to map the response object to an array, quicker to add to table below
         const requestArray = Object.entries(data).map(
           ([id, request]) => ({

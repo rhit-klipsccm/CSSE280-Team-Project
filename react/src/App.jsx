@@ -22,6 +22,7 @@ function App() {
         if (!pageType)
             password = prompt("Input Admin Password");
 
+        //You could probably make this better by drawing from a constant
         if (password === "Admin Key" || pageType)
             changePageType(!pageType);
     }
