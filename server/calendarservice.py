@@ -46,7 +46,7 @@ def patch_event(event_id, **fields):
         updated_event_details["summary"] = fields["summary"]
 
     if fields.get("description"):
-        updated_event_details["description"] = fields["discription"]
+        updated_event_details["description"] = fields["description"]
 
     if fields.get("start_time"):
         updated_event_details["start"] = {
