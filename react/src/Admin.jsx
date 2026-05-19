@@ -8,7 +8,7 @@ function Admin() {
   const [reason, setReason] = useState("")
 
   useEffect(() => {
-    fetch("http://localhost:8080/requests", {
+    fetch("/requests", {
       headers: {
         Authorization: "Basic " + btoa("admin:Admin Key")
       }
@@ -35,7 +35,7 @@ function Admin() {
       return
     }
 
-    fetch(`http://localhost:8080/requests/${selectedRequest.id}`, {
+    fetch(`/requests/${selectedRequest.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
