@@ -31,8 +31,8 @@ def get_all_requests():
         request = {
             "name": request_data["name"],
             "date": request_data["date"],
-            "start-time": request_data["start_time"],
-            "end-time": request_data["end_time"],
+            "start_time": request_data["start_time"],
+            "end_time": request_data["end_time"],
             "approval": request_data["approval"],
             "reason": request_data["reason"]
         }
@@ -56,8 +56,8 @@ def form_request_entry(**fields):
     return {
         "name": fields["name"],
         "date": fields["date"],
-        "start-time": fields["start_time"],
-        "end-time": fields["end_time"],
+        "start_time": fields["start_time"],
+        "end_time": fields["end_time"],
         "approval": fields["approval"],
         "reason": fields["reason"]
     }
@@ -72,11 +72,11 @@ def add_request(request):
             name=request["name"],
             date=request["date"],
             ## note from connor:
-            #  i don't think **kwargs supports this case: "start-time" / "end-time" / etc.
+            #  i don't think **kwargs supports this case: "start_time" / "end_time" / etc.
             #  current solution is to call the parameters "start_time" and "end_time", but 
             #  the fields from request object/dict. are still in their original case:
-            start_time=request["start-time"],
-            end_time=request["end-time"],
+            start_time=request["start_time"],
+            end_time=request["end_time"],
             ## not magical strings! requests are pending without reason by default.
             approval="Pending",
             reason=""

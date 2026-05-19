@@ -29,8 +29,8 @@ def get_all_requests():
         request = {
             "name": request_data["name"],
             "date": request_data["date"],
-            "start-time": request_data["start_time"],
-            "end-time": request_data["end_time"],
+            "start_time": request_data["start_time"],
+            "end_time": request_data["end_time"],
             "approval": request_data["approval"],
             "reason": request_data["reason"]
         }
@@ -70,12 +70,8 @@ def add_request(request, event_id):
         form_request_entry(
             name=request["name"],
             date=request["date"],
-            ## note from connor:
-            #  i don't think **kwargs supports this case: "start-time" / "end-time" / etc.
-            #  current solution is to call the parameters "start_time" and "end_time", but 
-            #  the fields from request object/dict. are still in their original case:
-            start_time=request["start-time"],
-            end_time=request["end-time"],
+            start_time=request["start_time"],
+            end_time=request["end_time"],
             ## not magical strings! requests are pending without reason by default.
             approval="Pending",
             reason="",
@@ -94,8 +90,8 @@ def patch_request(request_id, action, reason=""):
         form_request_entry(
             name=request["name"],
             date=request["date"],
-            start_time=request["start-time"],
-            end_time=request["end-time"],
+            start_time=request["start_time"],
+            end_time=request["end_time"],
             approval=action,
             reason=reason,
             event_id=request["event_id"]

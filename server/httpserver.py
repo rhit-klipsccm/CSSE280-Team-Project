@@ -46,8 +46,8 @@ def submit_request():
     data = flask.request.form
     event_id = calendarservice.create_event(
         data["name"],
-        start_time=datetime.strptime(" ".join([data["date"], data["start-time"]]), "%Y-%m-%d %H:%M"),
-        end_time=datetime.strptime(" ".join([data["date"], data["end-time"]]), "%Y-%m-%d %H:%M"),
+        start_time=datetime.strptime(" ".join([data["date"], data["start_time"]]), "%Y-%m-%d %H:%M"),
+        end_time=datetime.strptime(" ".join([data["date"], data["end_time"]]), "%Y-%m-%d %H:%M"),
         description="¡PENDING!"
     )
     requestservice.add_request(data, event_id)
@@ -62,7 +62,10 @@ def update_request(request_id):
     reason = data.get("reason")
 
     requestservice.patch_request(request_id, approval_action, reason)
-    return flask.redirect("/admin.html")
+    return flask.Response(
+        status="200 OK",
+        response="Updated!"
+    )
 
 @app.delete("/requests/<request_id>")
 def delete_request(request_id):
@@ -85,8 +88,8 @@ def create_event():
     data = request.get_json()
     created_event = calendarservice.create_event(
         title=data["title"],
-        start_time=datetime.strptime(" ".join([data["date"], data["start-time"]]), "%Y-%m-%d %H:%M"),
-        end_time=datetime.strptime(" ".join([data["date"], data["start-time"]]), "%Y-%m-%d %H:%M"),
+        start_time=datetime.strptime(" ".join([data["date"], data["start_time"]]), "%Y-%m-%d %H:%M"),
+        end_time=datetime.strptime(" ".join([data["date"], data["start_time"]]), "%Y-%m-%d %H:%M"),
         description=data.get("description", "")
     )
     return flask.Response(
