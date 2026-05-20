@@ -121,64 +121,65 @@ function Admin() {
 
       <br />
 
-      <h2>
-        Selected request:{" "}
-        {
-          selectedRequest ? selectedRequest.name : "Select request from table"
-        }
-      </h2>
+      <div className="rightAlign">
+        <h2>
+          Selected request:{" "}
+          {
+            selectedRequest ? selectedRequest.name : "Select request from table"
+          }
+        </h2>
 
-      <div className="approval-buttons">
+        <div className="approval-buttons">
 
-  <label>
-    <input
-      type="radio"
-      name="approval-status"
-      value="Approved"
-      checked={approvalAction === "Approved"}
-      onChange={(e) => setApprovalAction(e.target.value)}
-    />
-    Approve
-  </label>
-  <label>
-    <input
-      type="radio"
-      name="approval-status"
-      value="Denied"
-      checked={approvalAction === "Denied"}
-      onChange={(e) => setApprovalAction(e.target.value)}
-    />
-    Deny
-  </label>
-  <label>
-    <input
-      type="radio"
-      name="approval-status"
-      value="Pending"
-      checked={approvalAction === "Pending"}
-      onChange={(e) => setApprovalAction(e.target.value)}
-    />
-    Pending
-  </label>
-</div>
-      <br/>
-      <label>
-        Reason (optional):
-      </label>
-      <br />
+          <label>
+            <input
+              type="radio"
+              name="approval-status"
+              value="Approved"
+              checked={approvalAction === "Approved"}
+              onChange={(e) => setApprovalAction(e.target.value)}
+            />
+            Approve
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="approval-status"
+              value="Denied"
+              checked={approvalAction === "Denied"}
+              onChange={(e) => setApprovalAction(e.target.value)}
+            />
+            Deny
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="approval-status"
+              value="Pending"
+              checked={approvalAction === "Pending"}
+              onChange={(e) => setApprovalAction(e.target.value)}
+            />
+            Pending
+          </label>
+        </div>
+        <br/>
+        <label for="reason">
+          Reason (optional):
+        </label>
+        <br/>
+        <textarea
+          name="reason"
+          id="reason"
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
+          rows="4"
+          cols="50"/>
+        <br />
 
-      <textarea
-        value={reason}
-        onChange={(e) => setReason(e.target.value)}
-        rows="4"
-        cols="50"/>
-      
-      <br />
-      <br />
-
-      <button onClick={submitApproval}>
-        Submit
-      </button>
+        <button onClick={submitApproval}>
+          Submit
+        </button>
+      </div>
     </>
   )
 }

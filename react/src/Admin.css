@@ -1,16 +1,37 @@
 .request-table {
-    width: 100vw;
+    border-collapse: collapse;
+    border-spacing: 0;
     border: 2px solid black;
+    width: 94vw;
+    margin-top: 5vh;
+    margin-left: 3vw;
+    margin-right: 3vw;
 }
 
 .request-table * {
-    border: 2px solid white;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 2px solid black;
+}
+
+tr {
+    background-color: #cacaca;
+    padding-top:1vh;
+    padding-bottom:1vh;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
 }
 
 th {
     background-color: grey;
 }
 
-.selected-row {
+tr.selected-row {
   background-color: lightblue;
+}
+
+.rightAlign {
+    margin-left: 2vw;
 }
