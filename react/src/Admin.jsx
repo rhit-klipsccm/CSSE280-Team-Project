@@ -6,6 +6,7 @@ function Admin() {
   const [selectedRequest, setSelectedRequest] = useState(null)
   const [approvalAction, setApprovalAction] = useState("Pending")
   const [reason, setReason] = useState("")
+  const [description, setDescription] = useState("")
 
   useEffect(() => {
     fetch("/requests").then((response) => response.json()).then((data) => {
@@ -63,7 +64,8 @@ function Admin() {
         setSelectedRequest({
           ...selectedRequest,
           approval: approvalAction,
-          reason: reason
+          reason: reason,
+          description: description
         })
 
         alert("Request updated!")
@@ -101,6 +103,7 @@ function Admin() {
                 setSelectedRequest(request)
                 setApprovalAction(request.approval)
                 setReason(request.reason || "")
+                setDescription(request.description || "")
               }}
 
               className={ selectedRequest?.id === request.id ? "selected-row": "" } style={{ cursor: "pointer" }}>
@@ -163,18 +166,34 @@ function Admin() {
           </label>
         </div>
         <br/>
-        <label for="reason">
-          Reason (optional):
-        </label>
-        <br/>
-        <textarea
-          name="reason"
-          id="reason"
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          rows="4"
-          cols="50"/>
-        <br />
+
+        <div className="textAreas">
+          <div className="labelGroup">
+            <label for="reason">
+              Reason (optional):
+            </label>
+            <textarea
+              name="reason"
+              id="reason"
+              value={reason}
+              onChange={(e) => setReason(e.target.value)}
+              rows="4"
+              cols="50"/>
+          </div>
+
+          <div className="labelGroup">
+            <label for="description">
+              Description:
+            </label>
+            <textarea
+              readOnly
+              name="description"
+              id="description"
+              value={description}
+              rows="4"
+              cols="50"/>
+          </div>
+        </div>
 
         <button onClick={submitApproval}>
           Submit

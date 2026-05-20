@@ -35,3 +35,15 @@ tr.selected-row {
 .rightAlign {
     margin-left: 2vw;
 }
+
+.textAreas {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1vh;
+}
+
+.labelGroup {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1vw;
+}
