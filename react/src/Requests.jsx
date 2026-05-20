@@ -56,6 +56,17 @@ function Requests() {
                 <p><input type="time" name="end_time" id="end_time" value={lastTime} onChange={adjustLastTime} required/></p>
               </div>
             </div>
+            
+            <div>
+                <label for="description">Description:</label>
+                <p><textarea  
+                      name="description" 
+                      id="description" 
+                      placeholder="Optional description here"
+                      rows="4"
+                      cols="30"
+                      /></p>
+            </div>
 
             <p><input type="submit" name="submit-request" id="submit-request" value="Submit Reservation Request"
               onClick={async (e) => {

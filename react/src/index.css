@@ -50,6 +50,7 @@ input#name {
     display: flex;
     flex-direction: row;
     margin-bottom: 5vh;
+    justify-content: space-evenly;
 }
 
 .labelgroup-container {
@@ -57,3 +58,4 @@ input#name {
     flex-direction: column;
     margin-right: 1vw;
 }
+
