@@ -59,12 +59,13 @@ function Requests() {
             
             <div>
                 <label for="description">Description:</label>
-                <p><textarea  
+                <p><input
+                      type="textarea"  
                       name="description" 
                       id="description" 
                       placeholder="Optional description here"
-                      rows="4"
-                      cols="30"
+                      // rows="4"
+                      // cols="30"
                       /></p>
             </div>
 
