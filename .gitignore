@@ -2,4 +2,4 @@ credentials.json
 token.pickle
 requests.db
 events.db
-server/requests.db
+requests.db
