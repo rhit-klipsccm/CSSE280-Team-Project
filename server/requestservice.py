@@ -31,6 +31,7 @@ def get_all_requests():
             "date": request_data["date"],
             "start_time": request_data["start_time"],
             "end_time": request_data["end_time"],
+            "description": request_data["description"],
             "approval": request_data["approval"],
             "reason": request_data["reason"]
         }
@@ -58,6 +59,7 @@ def form_request_entry(**fields):
         "start_time": fields["start_time"],
         "end_time": fields["end_time"],
         "approval": fields["approval"],
+        "description": fields["description"],
         "reason": fields["reason"],
         "event_id": fields["event_id"]
     }
@@ -72,6 +74,7 @@ def add_request(request, event_id):
             date=request["date"],
             start_time=request["start_time"],
             end_time=request["end_time"],
+            description=request["description"],
             ## not magical strings! requests are pending without reason by default.
             approval="Pending",
             reason="",
@@ -92,6 +95,7 @@ def patch_request(request_id, action, reason=""):
             date=request["date"],
             start_time=request["start_time"],
             end_time=request["end_time"],
+            description=request["description"],
             approval=action,
             reason=reason,
             event_id=request["event_id"]
